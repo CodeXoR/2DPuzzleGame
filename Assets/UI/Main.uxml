@@ -1,0 +1,35 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainStyle.uss?fileID=7433441132597879392&amp;guid=54b3049aef0a29d4f8cddbd89291ddd5&amp;type=3#MainStyle" />
+    <ui:VisualElement name="Container" style="width: 100%; height: 100%;">
+        <ui:VisualElement name="ContainerTop" style="width: 100%; height: 33.33%; align-items: center;">
+            <ui:VisualElement name="ScoreBar" class="score-bar">
+                <ui:VisualElement name="ScoreBarLeft" style="flex-grow: 1; width: 48%; flex-direction: row;">
+                    <ui:VisualElement name="Score" style="flex-grow: 1; width: 70%; align-self: flex-end; align-items: flex-end; height: 100%;">
+                        <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ScoreText" style="height: 100%; width: 100%; align-self: auto; font-size: 60px; -unity-text-align: middle-right; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ScoreIcon" style="flex-grow: 1; width: 30%; background-image: url(&apos;project://database/Assets/Sprites/Coin.png?fileID=2800000&amp;guid=fbd956cd86f71466d90037828950626b&amp;type=3#Coin&apos;); -unity-background-scale-mode: scale-to-fit; scale: 1 1; margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ScoreBarCenter" style="flex-grow: 1; background-image: none;">
+                    <ui:Label tabindex="-1" text="|" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DivLabel" style="height: 100%; -unity-text-align: middle-center; font-size: 100px; -unity-font-style: normal;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ScoreBarRight" style="flex-grow: 1; width: 48%; flex-direction: row;">
+                    <ui:VisualElement name="TimeIcon" style="flex-grow: 1; width: 30%; background-image: url(&apos;project://database/Assets/Sprites/Timer.png?fileID=2800000&amp;guid=cb04b83a8c3a045558cd1f05866cf45e&amp;type=3#Timer&apos;); -unity-background-scale-mode: scale-to-fit; scale: 1 1; margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 0;" />
+                    <ui:VisualElement name="Time" style="flex-grow: 1; width: 70%; align-self: flex-end; align-items: flex-end; height: 100%;">
+                        <ui:Label tabindex="-1" text="180" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimeText" style="height: 100%; width: 100%; align-self: auto; font-size: 60px; -unity-text-align: middle-left; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ContainerMiddle" style="width: 100%; height: 33.33%; justify-content: space-around; align-items: center;">
+            <ui:Button text="Start Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="start-button" style="transition-timing-function: ease-out-elastic;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ContainerBottom" style="width: 100%; height: 33.33%;" />
+        <ui:VisualElement name="GamePrompt" class="game-prompt">
+            <ui:VisualElement name="PromptTop" style="flex-grow: 1; height: 33.33%;" />
+            <ui:VisualElement name="PromptMiddle" style="flex-grow: 1; height: 33.33%;">
+                <ui:Label tabindex="-1" text="Level Complete" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PromptText" enable-rich-text="true" class="prompt-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PromptBottom" style="flex-grow: 1; height: 33.33%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

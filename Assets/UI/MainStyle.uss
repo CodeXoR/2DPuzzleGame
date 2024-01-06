@@ -1,0 +1,92 @@
+.start-button {
+    width: 600px;
+    height: 200px;
+    font-size: 60px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -unity-font-style: bold;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(255, 187, 136);
+    border-radius: 40px;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out-back;
+}
+
+.start-button:hover {
+    scale: 1.1 1.1;
+}
+
+.start-button:active {
+    background-color: rgb(162, 255, 141);
+}
+
+.score-bar {
+    flex-grow: 0;
+    background-color: rgb(255, 187, 136);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    width: 70%;
+    height: 50%;
+    flex-shrink: 0;
+    align-items: stretch;
+    align-self: auto;
+    margin-top: 16px;
+    flex-direction: row;
+    translate: 0 -120%;
+    transition-duration: 0.75s;
+    transition-timing-function: ease-out-bounce;
+}
+
+.score-bar-show {
+    translate: 0 0;
+}
+
+.game-prompt {
+    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.33);
+    transition-duration: 0.35s;
+    transition-timing-function: linear;
+}
+
+.game-prompt-show {
+    opacity: 1;
+}
+
+.prompt-label {
+    width: 100%;
+    height: 100%;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    font-size: 88px;
+    scale: 0 0;
+    transition-duration: 0.35s;
+    transition-timing-function: ease-out-bounce;
+}
+
+.prompt-label-show {
+    scale: 1 1;
+    -unity-text-align: middle-center;
+}
