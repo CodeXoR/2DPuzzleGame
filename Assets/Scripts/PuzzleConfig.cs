@@ -7,4 +7,5 @@ public class PuzzleConfig : ScriptableObject
     public int height;
     public int scoreToComplete;
     public int timeToComplete;
+    public PuzzleObjectConfig[] puzzleObjects;
 }

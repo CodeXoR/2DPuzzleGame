@@ -47,8 +47,8 @@ public class GameController : MonoBehaviour
     {
         var cameraYOffset = 1f;
         var cameraTransform = _gameCamera.transform;
-        cameraTransform.position = new Vector3((_activePuzzle.GetWidth() - 1) * .5f, 
-            _activePuzzle.GetHeight() * .5f + cameraYOffset, cameraTransform.position.z);
+        cameraTransform.position = new Vector3((_activePuzzle.Width - 1) * .5f, 
+            _activePuzzle.Height * .5f + cameraYOffset, cameraTransform.position.z);
     }
 
     private void UpdateGameTime()

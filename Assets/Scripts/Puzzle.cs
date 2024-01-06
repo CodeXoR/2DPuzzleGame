@@ -12,27 +12,27 @@ public class Puzzle : MonoBehaviour
     private PuzzleObject _selectedObject;
     private Coroutine _activeSwapRoutine;
     private Vector2Int _selectedGridCoords;
-    
-    public int TimeToComplete { get; private set; }
-    public int ScoreToComplete { get; private set; }
+    private PuzzleConfig _puzzleConfig;
+
+    public int Width => _puzzleConfig.width;
+    public int Height => _puzzleConfig.height;
+    public int TimeToComplete => _puzzleConfig.timeToComplete;
+    public int ScoreToComplete => _puzzleConfig.scoreToComplete;
+    public PuzzleObjectConfig[] PuzzleObjects => _puzzleConfig.puzzleObjects;
 
     public void Construct(PuzzleObjectSpawner puzzleObjectSpawner, PuzzleConfig puzzleConfig)
     {
-        var gridWidth = puzzleConfig.width;
-        var gridHeight = puzzleConfig.height;
-        TimeToComplete = puzzleConfig.timeToComplete;
-        ScoreToComplete = puzzleConfig.scoreToComplete;
-        
+        _puzzleConfig = puzzleConfig;
         _spawner = puzzleObjectSpawner;
-        _puzzleObjectGrid = new PuzzleObject[gridWidth, gridHeight];
+        _puzzleObjectGrid = new PuzzleObject[Width, Height];
 
-        for (var row = 0; row < gridHeight; row++)
+        for (var row = 0; row < Height; row++)
         {
-            for (var column = 0; column < gridWidth; column++)
+            for (var column = 0; column < Width; column++)
             {
                 var puzzleObjectPosition = new Vector3(column, row);
                 SetupPuzzleObject(_spawner.GetPuzzleObjectFrame(), puzzleObjectPosition);
-                var puzzleObject = _spawner.GetRandomPuzzleObject();
+                var puzzleObject = _spawner.GetRandomPuzzleObject(PuzzleObjects);
                 SetupPuzzleObject(puzzleObject, puzzleObjectPosition);
                 _puzzleObjectGrid[column, row] = puzzleObject;
             }
@@ -85,8 +85,8 @@ public class Puzzle : MonoBehaviour
 
     private bool AreGridCoordsValid(int xCoord, int yCoord)
     {
-        if (xCoord < 0 || xCoord >= GetWidth()) return false;
-        return yCoord >= 0 && yCoord < GetHeight();
+        if (xCoord < 0 || xCoord >= Width) return false;
+        return yCoord >= 0 && yCoord < Height;
     }
 
     private Vector2Int GetClampedGridCoords(Vector2Int selectedGridCoords, Vector2Int swapGridCoords)
@@ -156,13 +156,11 @@ public class Puzzle : MonoBehaviour
     
     private List<List<PuzzleObject>> GetHorizontalMatches()
     {
-        var gridWidth = GetWidth();
-        var gridHeight = GetHeight();
         var matchedObjects = new List<List<PuzzleObject>>();
         var activeObjectList = new List<PuzzleObject>();
-        for (var row = 0; row < gridHeight; row++)
+        for (var row = 0; row < Height; row++)
         {
-            for (var column = 0; column < gridWidth; column++)
+            for (var column = 0; column < Width; column++)
             {
                 var puzzleObject = _puzzleObjectGrid[column, row];
                 var lastObjectCounted = activeObjectList is { Count: > 0 } ? activeObjectList[^1] : null;
@@ -184,13 +182,11 @@ public class Puzzle : MonoBehaviour
     
     private List<List<PuzzleObject>> GetVerticalMatches()
     {
-        var gridWidth = GetWidth();
-        var gridHeight = GetHeight();
         var matchedObjects = new List<List<PuzzleObject>>();
         var activeObjectList = new List<PuzzleObject>();
-        for (var column = 0; column < gridWidth; column++)
+        for (var column = 0; column < Width; column++)
         {
-            for (var row = 0; row < gridHeight; row++)
+            for (var row = 0; row < Height; row++)
             {
                 var puzzleObject = _puzzleObjectGrid[column, row];
                 var lastObjectCounted = activeObjectList is { Count: > 0 } ? activeObjectList[^1] : null;
@@ -248,13 +244,11 @@ public class Puzzle : MonoBehaviour
 
     private IEnumerator RestockPuzzleGrid()
     {
-        var gridWidth = GetWidth();
-        var gridHeight = GetHeight();
-        for (var column = 0; column < gridWidth; column++)
+        for (var column = 0; column < Width; column++)
         {
             var bottomIndex = 0;
             var topIndex = 1;
-            while (topIndex < gridHeight)
+            while (topIndex < Height)
             {
                 var bottomObject = GetGridObject(column, bottomIndex);
                 var topObject = GetGridObject(column, topIndex);
@@ -276,15 +270,15 @@ public class Puzzle : MonoBehaviour
                 topIndex++;
             }
 
-            while (bottomIndex < gridHeight)
+            while (bottomIndex < Height)
             {
                 if (GetGridObject(column, bottomIndex) != null)
                 {
                     bottomIndex++;
                     continue;
                 }
-                var newPuzzleObject = _spawner.GetRandomPuzzleObject();
-                var startPosition = new Vector3(column, gridHeight + 1);
+                var newPuzzleObject = _spawner.GetRandomPuzzleObject(PuzzleObjects);
+                var startPosition = new Vector3(column, Height + 1);
                 SetupPuzzleObject(newPuzzleObject, startPosition);
                 var movePosition = new Vector3(column, bottomIndex);
                 SetGridObject(newPuzzleObject, movePosition);
@@ -301,16 +295,6 @@ public class Puzzle : MonoBehaviour
         _activeSwapRoutine = null;
         
         ScoreMatches();
-    }
-
-    public int GetWidth()
-    {
-        return _puzzleObjectGrid.GetLength(0);
-    }
-
-    public int GetHeight()
-    {
-        return _puzzleObjectGrid.GetLength(1);
     }
     
     public bool IsInteractible()
@@ -347,11 +331,9 @@ public class Puzzle : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-        var gridWidth = GetWidth();
-        var gridHeight = GetHeight();
-        for (var column = 0; column < gridWidth; column++)
+        for (var column = 0; column < Width; column++)
         {
-            for (var row = 0; row < gridHeight; row++)
+            for (var row = 0; row < Height; row++)
             {
                 var puzzleObject = _puzzleObjectGrid[column, row];
                 if (puzzleObject != null)

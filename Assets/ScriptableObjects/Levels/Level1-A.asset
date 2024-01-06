@@ -16,3 +16,8 @@ MonoBehaviour:
   height: 6
   scoreToComplete: 500
   timeToComplete: 60
+  puzzleObjects:
+  - {fileID: 11400000, guid: 62d1b5754be01b349ae5393b53fa8d0c, type: 2}
+  - {fileID: 11400000, guid: bd4c03dbec3cf1047a60eef82a4a3de6, type: 2}
+  - {fileID: 11400000, guid: e7729816273c41046a7ff28dbeb08f6b, type: 2}
+  - {fileID: 11400000, guid: ecb3e07a4601f93449d2ae082a5d4b76, type: 2}

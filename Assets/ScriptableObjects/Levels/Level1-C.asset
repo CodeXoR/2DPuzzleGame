@@ -16,3 +16,10 @@ MonoBehaviour:
   height: 10
   scoreToComplete: 1000
   timeToComplete: 120
+  puzzleObjects:
+  - {fileID: 11400000, guid: 62d1b5754be01b349ae5393b53fa8d0c, type: 2}
+  - {fileID: 11400000, guid: bd4c03dbec3cf1047a60eef82a4a3de6, type: 2}
+  - {fileID: 11400000, guid: e7729816273c41046a7ff28dbeb08f6b, type: 2}
+  - {fileID: 11400000, guid: ecb3e07a4601f93449d2ae082a5d4b76, type: 2}
+  - {fileID: 11400000, guid: a3c99fc7bd6fe894da20798500bc0ad7, type: 2}
+  - {fileID: 11400000, guid: 5ec7530e8d23ed7418ca84619a3c9f85, type: 2}

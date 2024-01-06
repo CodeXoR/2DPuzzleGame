@@ -8,7 +8,6 @@ public class PuzzleObjectSpawner : MonoBehaviour
 
     [SerializeField] private PuzzleObject _puzzleObjectTemplate;
     [SerializeField] private PuzzleObjectConfig _puzzleObjectFrameConfig;
-    [SerializeField] private PuzzleObjectConfig[] _puzzleObjectConfigs;
     private IObjectPool<PuzzleObject> _objectPool;
 
     public void Initialize()
@@ -59,11 +58,11 @@ public class PuzzleObjectSpawner : MonoBehaviour
         return puzzleObjectFrame;
     }
 
-    public PuzzleObject GetRandomPuzzleObject()
+    public PuzzleObject GetRandomPuzzleObject(PuzzleObjectConfig[] puzzleObjectConfigs)
     {
-        if (_puzzleObjectConfigs.Length == 0) return default;
+        if (puzzleObjectConfigs.Length == 0) return default;
         var puzzleObject = Get();
-        var puzzleObjectConfig = _puzzleObjectConfigs[Random.Range(0, _puzzleObjectConfigs.Length)];
+        var puzzleObjectConfig = puzzleObjectConfigs[Random.Range(0, puzzleObjectConfigs.Length)];
         puzzleObject.Initialize(puzzleObjectConfig);
         puzzleObject.BringToFront();
         return puzzleObject;
